@@ -1,6 +1,312 @@
-/******* Change Box Model ***************/
+/* ===================== Reset ===================== */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===================== Tokens ===================== */
+:root {
+  --ink: #0e1726;
+  --muted: #4b5563;
+  --bg: #ffffff;
+  --panel: #f7fafc;
+  --brand: #0b3d91;
+  --accent: #0ea5a6;
+  --link: #2563eb;
+  --btnText: #ffffff;
+  --shadow: 0 10px 25px rgba(2, 6, 23, 0.08);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --wrap: 980px;
+}
+
+/* ===================== Base ===================== */
+body {
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: url("/images/site/small_check.jpg") repeat;
+  background-size: 60px 60px;
+}
+
+/* Zones globales */
+#top-header,
+nav,
+footer,
+main {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* ===================== Carte principale ===================== */
+main {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+/* ===================== Header ===================== */
+#top-header {
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+#top-header .siteName a {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: 0.2px;
+}
+
+#top-header #tools a {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+/* ===================== Navigation ===================== */
+nav {
+  margin-top: 0.4rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.6rem;
+  margin: 0.5rem 0 1.1rem;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav li a {
+  display: inline-block;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ===================== Titres ===================== */
+.welcome {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin: 0.4rem 0 1rem;
+}
+
+.panel h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.7rem;
+}
+
+/* ===================== Hero ===================== */
+.hero {
+  position: relative;
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.hero-img {
+  width: 100%;
+  opacity: 0.96;
+}
+
+.hero-card {
+  position: absolute;
+  left: 0.9rem;
+  top: 0.9rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-left: 6px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 0.9rem;
+  max-width: 62%;
+}
+
+.hero-title {
+  color: #0a7c7d;
+  font-size: 1.15rem;
+  margin: 0 0 0.35rem;
+}
+
+.hero-features {
+  margin: 0 0 0.6rem;
+  padding-left: 1rem;
+  color: #036b6c;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--brand);
+  color: var(--btnText);
+  padding: 0.65rem 1rem;
+  border-radius: 0.6rem;
+  font-weight: 700;
+}
+
+/* ===================== Upgrades & Reviews ===================== */
+.panels {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1.2rem;
+}
+
+.upgrade-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  justify-items: center;
+}
+
+.upgrade-grid li a {
+  display: grid;
+  gap: 0.35rem;
+  text-align: center;
+  color: var(--link);
+}
+
+.upgrade-grid img {
+  background: var(--accent);
+  border-radius: 0.4rem;
+  padding: 0.55rem;
+  width: 100%;
+  max-width: 120px;
+}
+
+.review-list {
+  padding-left: 1.1rem;
+  margin: 0;
+}
+
+/* ===================== Footer ===================== */
+footer {
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 1rem 1.5rem;
+  margin-top: 2rem;
+}
+
+/* ===================== Petits écrans ===================== */
+@media (max-width: 360px) {
+  .welcome {
+    font-size: 1.25rem;
+  }
+
+  .hero-card {
+    position: static;
+    max-width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .upgrade-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===================== Large screens (≥ 992px) ===================== */
+@media (min-width: 992px) {
+  body {
+    background-image: url("/images/site/checkerboard.jpg");
+  }
+
+  main {
+    border: 6px solid var(--accent);
+    border-radius: 20px;
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  .welcome {
+    font-size: 2rem;
+  }
+
+  .hero {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .hero-card {
+    left: 2rem;
+    top: 2rem;
+    max-width: 40%;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  /* --- Alignements des deux colonnes --- */
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    align-items: start;
+  }
+
+  .panel h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+  }
+
+  .upgrades,
+  .reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .upgrade-grid,
+  .review-list {
+    margin-top: 0;
+  }
+
+  .upgrade-grid {
+    justify-items: start;
+    column-gap: 1.25rem;
+    row-gap: 1.25rem;
+  }
+
+  .review-list {
+    padding-left: 1.1rem;
+  }
 }
