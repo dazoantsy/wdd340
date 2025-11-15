@@ -1,7 +1,8 @@
 /* ******************************************
- * This server.js file is the primary file of the
+ * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
+
 /* ***********************
  * Require Statements
  *************************/
@@ -10,34 +11,37 @@ const expressLayouts = require("express-ejs-layouts")
 require("dotenv").config()
 
 const app = express()
-const staticRoutes = require("./routes/static")
+
+const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const errorRoute = require("./routes/errorRoute")
-const utilities = require("./utilities")
+const utilities = require("./utilities/")
 
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout") // layout.ejs dans views/layouts
 
 /* ***********************
  * Routes
  *************************/
-app.use(staticRoutes)
 
-// Index route
+// Fichiers statiques + routes de base
+app.use(static)
+
+// Page d’accueil
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// Inventory routes
+// Routes inventaire
 app.use("/inv", inventoryRoute)
 
-// Error test routes (intentional 500)
+// Routes d’erreur (pour le test 500)
 app.use("/error", errorRoute)
 
-// File Not Found Route - must be last normal route
+// 404 - doit être la dernière route "classique"
 app.use(async (req, res, next) => {
   next({
     status: 404,
@@ -53,28 +57,30 @@ app.use(async (err, req, res, next) => {
   const nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
 
-  const status = err.status || 500
-  const message =
-    status === 404
-      ? err.message
-      : "Oh no! There was a crash. Maybe try a different route?"
+  let message
+  if (err.status === 404) {
+    message = err.message
+  } else {
+    message = "Oh no! There was a crash. Maybe try a different route?"
+  }
 
-  res.status(status).render("errors/error", {
-    title: status || "Server Error",
-    message,
-    nav,
-  })
+  res
+    .status(err.status || 500)
+    .render("errors/error", {
+      title: err.status || "Server Error",
+      message,
+      nav,
+    })
 })
 
 /* ***********************
  * Local Server Information
- * Values from .env (environment) file
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
 
 /* ***********************
- * Log statement to confirm server operation
+ * Start Server
  *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
