@@ -393,3 +393,74 @@ footer {
   color: var(--muted);
   font-weight: 600;
 }
+
+/* ===================== Inventory detail ===================== */
+
+#inv-detail {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.inv-detail-img img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.inv-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inv-detail-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.inv-detail-price {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.inv-detail-miles,
+.inv-detail-color {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.inv-detail-desc {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Layout large écrans pour le détail */
+@media (min-width: 900px) {
+  #inv-detail {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.footer-links a {
+  color: #fff;
+  background: #0ea5a6;
+  /* turquoise */
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  background: #0c8d8d;
+}

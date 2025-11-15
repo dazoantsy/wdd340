@@ -24,6 +24,14 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next)
+
 module.exports = Util
 
 /* **************************************
@@ -47,14 +55,41 @@ Util.buildClassificationGrid = async function(data){
       + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
       grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+      grid += '<span>$'
+      grid += new Intl.NumberFormat("en-US").format(vehicle.inv_price)
+      grid += '</span>'
       grid += '</div>'
       grid += '</li>'
     })
     grid += '</ul>'
-  } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  } else {
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
+
+/* **************************************
+* Build the vehicle detail view HTML
+* ************************************ */
+Util.buildInvDetail = function (vehicle) {
+  let detail = '<section id="inv-detail">'
+  detail += '<div class="inv-detail-img">'
+  detail += '<img src="' + vehicle.inv_image + '" alt="Image of '
+    + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors" />'
+  detail += '</div>'
+  detail += '<div class="inv-detail-info">'
+  detail += '<h2 class="inv-detail-title">' + vehicle.inv_year + ' '
+    + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
+  detail += '<p class="inv-detail-price">Price: $'
+    + new Intl.NumberFormat("en-US").format(vehicle.inv_price) + '</p>'
+  detail += '<p class="inv-detail-miles">Mileage: '
+    + new Intl.NumberFormat("en-US").format(vehicle.inv_miles) + ' miles</p>'
+  detail += '<p class="inv-detail-color">Color: ' + vehicle.inv_color + '</p>'
+  detail += '<p class="inv-detail-desc">' + vehicle.inv_description + '</p>'
+  detail += '</div>'
+  detail += '</section>'
+  return detail
+}
+
+// Alias used by controllers for clarity
+Util.buildDetailView = Util.buildInvDetail
