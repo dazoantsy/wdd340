@@ -451,16 +451,19 @@ footer {
 }
 
 .footer-links a {
-  color: #fff;
-  background: #0ea5a6;
-  /* turquoise */
-  padding: 6px 12px;
-  border-radius: 5px;
+  background: #FFD700;
+  /* jaune vif */
+  color: #000000;
+  /* texte noir */
+  padding: 8px 16px;
+  border-radius: 6px;
   font-weight: 600;
-  display: inline-block;
   text-decoration: none;
+  display: inline-block;
+  transition: 0.2s ease-in-out;
 }
 
 .footer-links a:hover {
-  background: #0c8d8d;
+  background: #e6c200;
+  /* légèrement plus foncé au hover */
 }
