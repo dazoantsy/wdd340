@@ -1,0 +1,9 @@
+<% if (locals.notice && locals.notice.length> 0) { %>
+    <div class="notice">
+        <% locals.notice.forEach(function (message) { %>
+            <p>
+                <%= message %>
+            </p>
+            <% }) %>
+    </div>
+    <% } %>

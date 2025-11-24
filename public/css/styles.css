@@ -45,7 +45,8 @@ a {
 
 /* ===================== Base ===================== */
 body {
-  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   color: var(--ink);
   background: url("/images/site/small_check.jpg") repeat;
   background-size: 60px 60px;
@@ -233,7 +234,28 @@ footer {
   margin-top: 2rem;
 }
 
-/* ===================== Layout wrapper & titles ===================== */
+.copyright {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Liens spéciaux dans le footer */
+.footer-links a {
+  background: #ffd700;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+  background: #e6c200;
+}
+
+/* ===================== Layout wrapper & titres ===================== */
 #wrapper {
   min-height: 100vh;
 }
@@ -249,12 +271,6 @@ footer {
   font-size: 1.25rem;
   font-weight: 800;
   margin: 0 0 0.7rem;
-}
-
-/* ===================== Footer text ===================== */
-.copyright {
-  margin: 0;
-  font-size: 0.9rem;
 }
 
 /* ===================== Petits écrans ===================== */
@@ -343,7 +359,6 @@ footer {
 }
 
 /* ===================== Inventory grid ===================== */
-
 #inv-display {
   list-style: none;
   margin: 1.5rem 0 0;
@@ -371,7 +386,6 @@ footer {
   display: block;
 }
 
-/* Bloc titre + prix */
 #inv-display .namePrice {
   margin-top: 0.5rem;
   display: flex;
@@ -395,7 +409,6 @@ footer {
 }
 
 /* ===================== Inventory detail ===================== */
-
 #inv-detail {
   margin-top: 1.5rem;
   padding: 1.25rem;
@@ -442,7 +455,6 @@ footer {
   line-height: 1.6;
 }
 
-/* Layout large écrans pour le détail */
 @media (min-width: 900px) {
   #inv-detail {
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -450,20 +462,170 @@ footer {
   }
 }
 
-.footer-links a {
-  background: #FFD700;
-  /* jaune vif */
-  color: #000000;
-  /* texte noir */
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: 0.2s ease-in-out;
+/* ===================== Login / Auth ===================== */
+.form-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #f5f5f5;
+  border-radius: 8px;
 }
 
-.footer-links a:hover {
-  background: #e6c200;
-  /* légèrement plus foncé au hover */
+.flash {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.flash.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.flash.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.login-form label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 0.3rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.login-form button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 10px;
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Valid / invalid icons */
+.login-form input:required:invalid {
+  background-image: url("/images/validation/invalid.png");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 20px 20px;
+}
+
+.login-form input:required:valid {
+  background-image: url("/images/validation/valid.png");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 20px 20px;
+}
+
+/* ===================== Inventory forms ===================== */
+/* (wrapper optionnel si tu veux centrer le formulaire) */
+.inventory-form-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.inventory-form-wrapper h1 {
+  margin-bottom: 1rem;
+}
+
+.inventory-form-wrapper .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+
+.inventory-form-wrapper label {
+  flex: 0 0 120px;
+  font-weight: 600;
+}
+
+.inventory-form-wrapper input[type="text"],
+.inventory-form-wrapper input[type="number"],
+.inventory-form-wrapper textarea,
+.inventory-form-wrapper select {
+  flex: 1 1 200px;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.inventory-form-wrapper .form-actions {
+  margin-top: 1rem;
+}
+
+.inventory-form-wrapper .form-actions button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Forme actuelle utilisée par add-inventory / add-classification */
+.inv-form {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.inv-form label {
+  text-align: right;
+  font-weight: 600;
+}
+
+.inv-form input,
+.inv-form textarea,
+.inv-form select {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.inv-form textarea {
+  min-height: 100px;
+  grid-column: 2 / 3;
+}
+
+.inv-form .btn {
+  grid-column: 2 / 3;
+  justify-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* Texte d'aide du formulaire d'inventaire */
+.inv-form .form-hint {
+  grid-column: 1 / -1;
+  /* occupe les 2 colonnes */
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-align: left;
+}
+
+.notice {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
